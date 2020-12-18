@@ -1,4 +1,4 @@
-Damn Vulnerable Exchange
+# Damn Vulnerable Exchange
 
 Damn Vulnerable Exchange (DVWA) is an Ethereum cryptocurrency exchange that is damn vulnerable. Its main goal is to be an aid for security professionals to test their skills and tools in a legal environment, help developers better understand the processes of securing smart contracts, and provide something for people to beat up on for fun :)
 
@@ -28,4 +28,6 @@ git clone https://github.com/gonzo-code/dve.git
   
 7. Make sure you have MetaMask installed on your browser and set the network to `localhost:7545`
   
-8. Happy Hacking
+8. Happy Hacking!
+
+![DVEpng](/DVE.png)
