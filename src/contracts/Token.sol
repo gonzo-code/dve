@@ -13,6 +13,13 @@ contract Token {
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
 
+    //variables use in attacks later
+    bool updateSupplyActivated = false;
+    bool reentryActivated = false;
+    uint256 defaultReentryTradeAmount = 10000000000000000000;
+    uint256 defaultTotalSupplyToAdd= 10000000000000000000000;
+
+
     // Events
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
@@ -26,7 +33,9 @@ contract Token {
         require(balanceOf[msg.sender] >= _value);
         _transfer(msg.sender, _to, _value);
         return true;
-    }
+
+        }
+    
 
     function _transfer(address _from, address _to, uint256 _value) internal {
         require(_to != address(0));
@@ -49,4 +58,28 @@ contract Token {
         _transfer(_from, _to, _value);
         return true;
     }
+
+    function activateRentry()  public {
+        reentryActivated = true;
+    }
+    function deactivateRentry() public {
+        reentryActivated = false;
+    }
+    function activateSupplyHack() public { 
+        updateSupplyActivated = true;
+    }
+    function deactivateSupplyHack() public {
+        updateSupplyActivated = false;
+    }
+
+
+
+    function updateReentryAmount(uint256 updatedAmount) public {
+        defaultReentryTradeAmount= updatedAmount;
+    }
+    function updateTotalSupplyAddAmount(uint256 updatedAmount) public { 
+        defaultTotalSupplyToAdd= updatedAmount;
+
+    }
+
 }
